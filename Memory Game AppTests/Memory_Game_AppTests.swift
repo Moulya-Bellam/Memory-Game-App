@@ -2,16 +2,23 @@
 //  Memory_Game_AppTests.swift
 //  Memory Game AppTests
 //
-//  Created by Mounesh on 3/5/25.
+//  Created by Moulya on 3/5/25.
 //
 
-import Testing
-@testable import Memory_Game_App
+import XCTest
+@testable import Memory_Game_App 
 
-struct Memory_Game_AppTests {
-
-    @Test func example() async throws {
-        // Write your test here and use APIs like `#expect(...)` to check expected conditions.
+class Memory_Game_AppTests: XCTestCase {
+    func testCardMatching() {
+        let viewModel = CardGameViewModel()
+        viewModel.startNewGame()
+        
+        let firstCard = viewModel.cards[0]
+        let secondCard = viewModel.cards[1]
+        
+        viewModel.selectCard(firstCard)
+        viewModel.selectCard(secondCard)
+        
+        XCTAssertEqual(viewModel.score, firstCard.content == secondCard.content ? 2 : -1)
     }
-
 }
